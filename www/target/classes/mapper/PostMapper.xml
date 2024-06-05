@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.silver.dao.IF_PostDAO">
+<insert id="insert" parameterType="www.silver.vo.PostVO">
+insert into post values(post_cnt.nextval,#{region_name},#{region},#{name},default)
+</insert>
+<select id="selectall" resultType="www.silver.vo.PostVO">
+	select * from post
+</select>
+<delete id="delete" parameterType="www.silver.vo.PostVO">
+	DELETE FROM post where no = #{no}
+</delete>
+<update id="update" parameterType="www.silver.vo.PostVO">
+UPDATE post SET region_name= #{region_name},region= #{region}, name = #{name}  WHERE no=#{no}
+</update>
+
+</mapper>

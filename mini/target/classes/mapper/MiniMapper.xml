@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="www.silver.dao.IF_FoodDAO">
+	<insert id="insert" parameterType="www.silver.vo.FoodVO">
+		insert into food
+		values(food_cnt.nextval,#{name},#{zone},#{introduction},#{grade},#{username},#{pw},default)
+	</insert>
+	<insert id="comment" parameterType="www.silver.vo.FoodVO">
+	insert into foodcomment
+	values(#{cno},#{cname},#{text})
+	
+	</insert>
+	
+	<insert id="saveFile" parameterType="String">
+	insert into food_attach values((select max(no) from food),#{filename})
+	</insert>
+	<select id="selectone" resultType="www.silver.vo.FoodVO">
+		select * from food where no=#{no}
+	</select>
+	<select id="search" resultType="www.silver.vo.FoodVO">
+		select * from food where name like #{search}
+	</select>
+	<select id="getFiles" resultType="String">
+	select filename from food_attach where no = #{no}
+	</select>
+	<select id="selectall" resultType="www.silver.vo.FoodVO">
+		select * from food
+	</select>
+	<select id="commentall" resultType="www.silver.vo.commentVO">
+		select * from foodcomment
+	</select>
+	<delete id="delno">
+		delete from food where no=#{no}
+	</delete>
+	<update id="update" parameterType="www.silver.vo.FoodVO">
+		update food set
+		name=#{name},zone=#{zone},introduction=#{introduction},grade=#{grade},username=#{username}
+		where no= #{no}
+	</update>
+
+</mapper>
